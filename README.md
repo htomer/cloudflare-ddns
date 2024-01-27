@@ -1,42 +1,48 @@
-# Cloudflare Dynamic DNS IP Updater
-<img alt="GitHub" src="https://img.shields.io/github/license/K0p1-Git/cloudflare-ddns-updater?color=black"> <img alt="GitHub last commit (branch)" src="https://img.shields.io/github/last-commit/K0p1-Git/cloudflare-ddns-updater/main"> <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/K0p1-Git/cloudflare-ddns-updater">
+# Cloudflare DDNS Docker Updater  
 
-This script is used to update Dynamic DNS (DDNS) service based on Cloudflare! Access your home network remotely via a custom domain name without a static IP! Written in pure BASH.
+This Docker container is designed to automate the process of updating the IP address associated with a Dynamic DNS (DDNS) record on Cloudflare. The container uses a bash script that periodically retrieves the current public IP address and updates the corresponding DNS record on Cloudflare's DNS service. By encapsulating this functionality within a Docker container, it offers improved portability and ease of deployment across different environments.
 
-## Support Me
-[![Donate Via Paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.me/Jasonkkf)
+## Build 
 
-## Installation
+To build the container yourself simply run:
 
 ```bash
-git clone https://github.com/K0p1-Git/cloudflare-ddns-updater.git
+docker build .
 ```
+
+## Parameters
+
+#### Required
+
+- EMAIL - Your Cloudflare account email address.
+- METHOD - Set to "global" for Global API Key or "token" for Scoped API Token.
+- KEY - Your API Token or Global API Key
+- ZONE - Zone identifier can be found in the "Overview" tab of your domain.
+- RECORD - Which record you want to be synced.
+
+#### Optional
+
+- PROXY - Set to "true" to make traffic go through Cloudflare. Defaults to false.
 
 ## Usage
-This script is used with crontab. Specify the frequency of execution through crontab.
+
+To run the cloudflare ddns updater container:
 
 ```bash
-# ┌───────────── minute (0 - 59)
-# │ ┌───────────── hour (0 - 23)
-# │ │ ┌───────────── day of the month (1 - 31)
-# │ │ │ ┌───────────── month (1 - 12)
-# │ │ │ │ ┌───────────── day of the week (0 - 6) (Sunday to Saturday 7 is also Sunday on some systems)
-# │ │ │ │ │ ┌───────────── command to issue                               
-# │ │ │ │ │ │
-# │ │ │ │ │ │
-# * * * * * /bin/bash {Location of the script}
+docker run \
+  -d \
+  -e EMAIL="example@example.com" \
+  -e METHOD="global" \
+  -e KEY="xxxxxxxxxx" \
+  -e ZONE="xxxxxxxxxx" \
+  -e RECORD="test.example.com" \
+  ghcr.io/htomer/cloudflare-ddns
 ```
 
-## Tested Environments:
-macOS Mojave version 10.14.6 (x86_64) <br />
-AlmaLinux 9.3 (Linux kernel: 5.14.0 | x86_64) <br />
-Debian Bullseye 11 (Linux kernel: 6.1.28 | aarch64) <br />
-
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
 ## Reference
-This script was made with reference from [Keld Norman](https://www.youtube.com/watch?v=vSIBkH7sxos) video.
+
+This project is based on the [cloudflare-ddns-updater](https://github.com/K0p1-Git/cloudflare-ddns-updater) script created by [Jason K](https://github.com/K0p1-Git).
 
 ## License
-[MIT](https://github.com/K0p1-Git/cloudflare-ddns-updater/blob/main/LICENSE)
+
+[MIT](https://github.com/htomer/cloudflare-ddns/blob/main/LICENSE)
