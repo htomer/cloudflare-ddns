@@ -1,5 +1,6 @@
 FROM debian:latest
 
+ENV METHOD="token"
 ENV PROXY="false"
 
 # install required packages.
