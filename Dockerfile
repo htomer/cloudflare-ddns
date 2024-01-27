@@ -1,7 +1,6 @@
 FROM alpine:latest
 
 # Optional arguments.
-ENV METHOD="token"
 ENV PROXY="false"
 
 # install required packages.

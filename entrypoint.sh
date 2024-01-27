@@ -12,6 +12,7 @@ checkForVariable EMAIL
 checkForVariable KEY
 checkForVariable ZONE
 checkForVariable RECORD
+checkForVariable METHOD
 
 # Save environment values.
 printenv | grep -v "no_proxy" >> /etc/environment
