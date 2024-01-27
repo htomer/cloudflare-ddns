@@ -16,5 +16,9 @@ checkForVariable RECORD
 # Save environment values.
 printenv | grep -v "no_proxy" >> /etc/environment
 
+# Create necessary directories and files.
+mkdir -p /var/log
+touch /var/log/messages
+
 # Initialize cron job.
-service rsyslog start && service cron start && tail -f /var/log/syslog
+rsyslogd && crond && tail -f /var/log/messages
