@@ -1,4 +1,7 @@
 # Cloudflare DDNS Docker Updater  
+[![Docker](https://github.com/htomer/cloudflare-ddns/actions/workflows/docker-publish.yml/badge.svg?event=release)](https://github.com/htomer/cloudflare-ddns/actions/workflows/docker-publish.yml)
+![GitHub Release](https://img.shields.io/github/v/release/htomer/cloudflare-ddns)
+
 
 This Docker container is designed to automate the process of updating the IP address associated with a Dynamic DNS (DDNS) record on Cloudflare. The container uses a bash script that periodically retrieves the current public IP address and updates the corresponding DNS record on Cloudflare's DNS service. By encapsulating this functionality within a Docker container, it offers improved portability and ease of deployment across different environments.
 
