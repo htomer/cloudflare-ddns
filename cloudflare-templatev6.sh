@@ -66,6 +66,23 @@ slackchannel="${SLACK_CHANNEL:-$slackchannel}"
 slackuri="${SLACK_URI:-$slackuri}"
 discorduri="${DISCORD_URI:-$discorduri}"
 
+###########################################
+## Validate required configuration
+###########################################
+
+required_config=(
+    auth_email
+    auth_key
+    zone_identifier
+    record_name
+)
+
+for config in "${required_config[@]}"; do
+    if [[ -z "${!config}" ]]; then
+        logger -s "$log_header_name: Missing required configuration: $config"
+        exit 1
+    fi
+done
 
 ################################################
 ## Make sure we have a valid IPv6 connection
